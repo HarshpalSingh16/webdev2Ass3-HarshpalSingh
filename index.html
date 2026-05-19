@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokéMatch — Memory Card Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <!-- Floating Pokéballs background -->
+  <div class="bg-balls" aria-hidden="true">
+    <div class="pokeball pb1"></div>
+    <div class="pokeball pb2"></div>
+    <div class="pokeball pb3"></div>
+    <div class="pokeball pb4"></div>
+  </div>
+
+  <div class="page-wrapper">
+
+    <!-- TITLE -->
+    <header class="site-header">
+      <div class="logo-wrap">
+        <span class="logo-icon">⚡</span>
+        <h1 class="logo-text">PokéMatch</h1>
+        <span class="logo-icon">⚡</span>
+      </div>
+      <p class="logo-sub">Memory Card Game</p>
+    </header>
+
+    <!-- CONTROLS BAR -->
+    <section class="controls-bar">
+      <div class="controls-left">
+        <div class="control-group">
+          <label class="ctrl-label">Difficulty</label>
+          <div class="btn-group" id="difficulty_btns">
+            <button class="diff-btn active" data-diff="easy">Easy</button>
+            <button class="diff-btn" data-diff="medium">Medium</button>
+            <button class="diff-btn" data-diff="hard">Hard</button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="ctrl-label">Theme</label>
+          <div class="btn-group" id="theme_btns">
+            <button class="theme-btn active" data-theme="dark">🌙 Dark</button>
+            <button class="theme-btn" data-theme="light">☀️ Light</button>
+            <button class="theme-btn" data-theme="forest">🌿 Forest</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-right">
+        <button id="powerup_btn" class="btn btn-powerup" title="Reveal all cards for 3 seconds">
+          👁️ Peek <span id="powerup_count">×3</span>
+        </button>
+        <button id="start_btn" class="btn btn-start">▶ Start</button>
+        <button id="reset_btn" class="btn btn-reset">↺ Reset</button>
+      </div>
+    </section>
+
+    <!-- STATUS BAR -->
+    <section class="status-bar" id="status_bar">
+      <div class="stat-item">
+        <span class="stat-icon">🖱️</span>
+        <span class="stat-label">Clicks</span>
+        <span class="stat-value" id="stat_clicks">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">🃏</span>
+        <span class="stat-label">Pairs Left</span>
+        <span class="stat-value" id="stat_pairs_left">—</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">✅</span>
+        <span class="stat-label">Matched</span>
+        <span class="stat-value" id="stat_matched">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">🎯</span>
+        <span class="stat-label">Total Pairs</span>
+        <span class="stat-value" id="stat_total">—</span>
+      </div>
+      <div class="stat-item timer-item">
+        <span class="stat-icon">⏱️</span>
+        <span class="stat-label">Time</span>
+        <span class="stat-value" id="stat_timer">—</span>
+      </div>
+    </section>
+
+    <!-- GAME GRID -->
+    <main class="game-area">
+      <div id="game_grid"></div>
+
+      <!-- OVERLAY MESSAGES -->
+      <div id="overlay" class="overlay hidden">
+        <div class="overlay-box">
+          <div class="overlay-icon" id="overlay_icon"></div>
+          <h2 class="overlay-title" id="overlay_title"></h2>
+          <p class="overlay-sub" id="overlay_sub"></p>
+          <button class="btn btn-start" id="overlay_play_again">Play Again</button>
+        </div>
+      </div>
+
+      <!-- LOADING -->
+      <div id="loading" class="loading hidden">
+        <div class="pokeball-loader"></div>
+        <p>Loading Pokémon...</p>
+      </div>
+
+      <!-- IDLE SPLASH -->
+      <div id="splash" class="splash">
+        <div class="splash-icon">🎮</div>
+        <p>Select a difficulty and press <strong>Start</strong> to begin!</p>
+      </div>
+    </main>
+
+    <!-- DIFFICULTY INFO -->
+    <section class="diff-info" id="diff_info">
+      <div class="diff-card" id="diff_easy">
+        <span class="diff-name">Easy</span>
+        <span class="diff-detail">3 pairs · 60s</span>
+      </div>
+      <div class="diff-card" id="diff_medium">
+        <span class="diff-name">Medium</span>
+        <span class="diff-detail">6 pairs · 90s</span>
+      </div>
+      <div class="diff-card" id="diff_hard">
+        <span class="diff-name">Hard</span>
+        <span class="diff-detail">10 pairs · 120s</span>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
